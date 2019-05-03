@@ -60,7 +60,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\SubmitCommand.cs" />
-    <Compile Include="Converters\NumericInputConverter.cs" />
     <Compile Include="Helpers\ConstantsHelper.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Page Include="SchedulerWindow.xaml">
