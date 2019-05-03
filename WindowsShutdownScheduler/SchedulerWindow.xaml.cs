@@ -5,11 +5,11 @@ using System.Windows.Input;
 namespace WindowsShutdownScheduler
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SchedulerWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SchedulerWindow : Window
     {
-        public MainWindow()
+        public SchedulerWindow()
         {
             InitializeComponent();
         }

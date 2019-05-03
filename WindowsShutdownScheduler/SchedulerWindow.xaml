@@ -1,0 +1,36 @@
+﻿<Window x:Class="WindowsShutdownScheduler.SchedulerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:WindowsShutdownScheduler.ViewModels"
+        mc:Ignorable="d"
+        Title="Scheduler"
+        Height="200"
+        Width="300">
+    <Window.DataContext>
+        <viewModels:ScheduleViewModel x:Name="ViewModel" />
+    </Window.DataContext>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock x:Name="TimeTextBlock" HorizontalAlignment="Center" Text="{Binding Time}" />
+            <TextBlock HorizontalAlignment="Center" Margin="10">Enter time in minutes:</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox x:Name="TextBox" 
+                         Text="{Binding Minutes, Mode=OneWay}" 
+                         PreviewTextInput="PreviewTextInput" 
+                         Width="100" 
+                         Height="20" />
+                <Button Command="{Binding SetTimerCommand}"
+                        CommandParameter="{Binding Source={x:Reference TextBox}, Path=Text}"
+                        Height="20" 
+                        VerticalAlignment="Bottom"
+                        Content="Set timer" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
