@@ -24,6 +24,8 @@ namespace WindowsShutdownScheduler.ViewModels
         private bool _isShutdownApproved;
 
         private SubmitCommand _setTimerCommand;
+        private SubmitCommand _showFullSizeWindowCommand;
+        private SubmitCommand _quitProgramCommand;
 
         public ScheduleViewModel()
         {
@@ -55,7 +57,7 @@ namespace WindowsShutdownScheduler.ViewModels
 
         public string Time
         {
-            get => _time;
+            get => ConstantsHelper.WindowsShutdownIn + _time;
             set
             {
                 _time = value;
@@ -85,7 +87,7 @@ namespace WindowsShutdownScheduler.ViewModels
                                int.TryParse(text, out var minutes);
                                _timeValue = TimeSpan.FromMinutes(minutes);
 
-                               MessageBoxResult answer = MessageBox.Show($"Are you sure you want to shutdown Windows in {Minutes}?",
+                               MessageBoxResult answer = MessageBox.Show($"Windows shutdown scheduled in {Minutes}?",
                                    ConstantsHelper.Warning, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                                if (answer == MessageBoxResult.Yes)
@@ -93,6 +95,30 @@ namespace WindowsShutdownScheduler.ViewModels
                                    _isShutdownApproved = true;
                                }
                            }
+                       }));
+            }
+        }
+
+        public SubmitCommand ShowFullSizeWindowCommand
+        {
+            get { return _showFullSizeWindowCommand ?? (_showFullSizeWindowCommand = new SubmitCommand(obj =>
+            {
+                if (Application.Current.MainWindow is Window window)
+                {
+                    window.Show();
+                    window.WindowState = WindowState.Normal;
+                }
+            }));}
+        }
+
+        public SubmitCommand QuitProgramCommand
+        {
+            get
+            {
+                return _quitProgramCommand ??
+                       (_quitProgramCommand = new SubmitCommand(obj =>
+                       {
+                           Application.Current.Shutdown();
                        }));
             }
         }

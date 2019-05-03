@@ -1,7 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-
 namespace WindowsShutdownScheduler
 {
     /// <summary>
@@ -12,6 +13,22 @@ namespace WindowsShutdownScheduler
         public SchedulerWindow()
         {
             InitializeComponent();
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                Hide();
+            }
+            base.OnStateChanged(e);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
+            base.OnClosing(e);
         }
 
         private new void PreviewTextInput(object sender, TextCompositionEventArgs e)

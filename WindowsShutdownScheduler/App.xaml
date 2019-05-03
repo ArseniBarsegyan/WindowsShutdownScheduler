@@ -1,9 +1,8 @@
 ﻿<Application x:Class="WindowsShutdownScheduler.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WindowsShutdownScheduler"
              StartupUri="SchedulerWindow.xaml">
     <Application.Resources>
-         
+        <Image x:Key="MyImage" Source="Icons/power_icon.png"/>
     </Application.Resources>
 </Application>
